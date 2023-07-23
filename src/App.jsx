@@ -12,14 +12,11 @@ const App = () => {
     fetchTransactions();
   }, []);
 
-  const fetchTransactions = async () => {
-    try {
-      const response = await fetch('http://localhost:8001/transactions');
-      const data = await response.json();
-      setTransactions(data);
-    } catch (error) {
-      console.error('Error fetching transactions:', error);
-    }
+  const fetchTransactions = () => {
+    fetch('http://localhost:8001/transactions')
+      .then((response) => response.json())
+      .then((data) => setTransactions(data))
+      .catch((error) => console.error('Error fetching transactions:', error));
   };
 
   const addTransaction = (newTransaction) => {
@@ -29,7 +26,7 @@ const App = () => {
 
   const deleteTransaction = (transactionId) => {
     // Remove the transaction with the given transactionId from transactions state
-    // Optionally, update the backend using DELETE request (not required in core deliverables)
+    
     const updatedTransactions = transactions.filter((transaction) => transaction.id !== transactionId);
     setTransactions(updatedTransactions);
   };
