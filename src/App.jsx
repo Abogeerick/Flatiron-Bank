@@ -3,24 +3,20 @@ import TransactionTable from './TransactionTable';
 import TransactionForm from './TransactionForm';
 import './App.css';
 
-
 const App = () => {
   const [transactions, setTransactions] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    // Fetch transactions from the local JSON DB server and update the state
+    // Fetch transactions from the local JSON DB server
     fetchTransactions();
   }, []);
 
-  const fetchTransactions = async () => {
-    try {
-      const response = await fetch('http://localhost:8001/transactions');
-      const data = await response.json();
-      setTransactions(data);
-    } catch (error) {
-      console.error('Error fetching transactions:', error);
-    }
+  const fetchTransactions = () => {
+    fetch('http://localhost:8001/transactions')
+      .then((response) => response.json())
+      .then((data) => setTransactions(data))
+      .catch((error) => console.error('Error fetching transactions:', error));
   };
 
   const addTransaction = (newTransaction) => {
@@ -72,7 +68,10 @@ const App = () => {
         type="text"
         placeholder="Search transactions"
         value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
+        onChange={(e) => {
+          setSearchTerm(e.target.value);
+          filterTransactions(e.target.value);
+        }}
       />
       <TransactionTable
         transactions={transactions}
