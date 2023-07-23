@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import TransactionTable from './TransactionTable';
 import TransactionForm from './TransactionForm';
-import './App.css'
+import '.App.css'
 
 const App = () => {
   const [transactions, setTransactions] = useState([]);
@@ -64,8 +64,8 @@ const App = () => {
   };
 
   return (
-    <div>
-      <h1>Bank Transactions</h1>
+    <div className="container">
+      <h1 className="header">Bank Transactions</h1>
       <TransactionForm addTransaction={addTransaction} />
       <input
         type="text"
