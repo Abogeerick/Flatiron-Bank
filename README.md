@@ -1,7 +1,5 @@
 # Bank Transactions React App
 
-![Bank Transactions](link_to_screenshot)
-
 A simple React application that displays a list of your recent bank transactions and allows you to add new transactions. You can also filter transactions by their description and sort them alphabetically by category or description. This project was built to practice React development skills and demonstrate how to interact with a local JSON DB server to fetch and manipulate data.
 
 ## Table of Contents
